@@ -1,14 +1,16 @@
 import { h, Component } from 'preact';
 import { Router, RouterOnChangeArgs } from 'preact-router';
+import { Match } from 'preact-router/match';
 
 import Header from './header';
 import Home from '../routes/home';
-import Profile from '../routes/profile';
+import VM from '../routes/vm';
 // import Home from 'async!../routes/home';
 // import Profile from 'async!../routes/profile';
 
 interface AppProps { }
 interface AppState { }
+interface MatchResult { matches: any, path: string, url: string }
 
 export default class App extends Component<AppProps, AppState> {
 	currentUrl: any;
@@ -24,11 +26,12 @@ export default class App extends Component<AppProps, AppState> {
 	render() {
 		return (
 			<div id="app">
-				<Header />
+				<Match path="/vm/">
+					{ (result: MatchResult) => !result.matches && (<Header />) }
+				</Match>
 				<Router onChange={this.handleRoute}>
 					<Home path="/" />
-					<Profile path="/profile/" user="me" />
-					<Profile path="/profile/:user" />
+					<VM path="/vm/" />
 				</Router>
 			</div>
 		);

@@ -1,0 +1,9 @@
+@import url("/external/glkote/glkote.css");
+
+.gameport {
+	min-height: 100%;
+	width: 100%;
+}
+
+.windowport {}
+.errorpane { display:none; }
