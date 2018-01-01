@@ -2,4 +2,23 @@
 	padding: 56px 20px;
 	min-height: 100%;
 	width: 100%;
+
+	display:grid;
+	justify-items: stretch;
+	align-items: stretch;
+	justify-content: stretch;
+	align-content: stretch;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr;
+	grid-template-areas:
+		"editor vm";
+}
+
+.editorPane {
+	display: absolute;
+	grid-area: "editor";
+}
+
+.vmPane {
+	grid-area: "vm";
 }

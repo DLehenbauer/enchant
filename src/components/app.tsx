@@ -26,8 +26,8 @@ export default class App extends Component<AppProps, AppState> {
 	render() {
 		return (
 			<div id="app">
-				<Match path="/vm/">
-					{ (result: MatchResult) => !result.matches && (<Header />) }
+				<Match path="/">
+					{ (result: MatchResult) => !result.url.match(/\/vm\/?/) && (<Header />) }
 				</Match>
 				<Router onChange={this.handleRoute}>
 					<Home path="/" />

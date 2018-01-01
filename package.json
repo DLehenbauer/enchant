@@ -20,9 +20,11 @@
     "eslint": "^4.9.0",
     "eslint-config-synacor": "^2.0.2",
     "if-env": "^1.0.0",
+    "monaco-editor": "^0.10.1",
     "preact-cli": "^2.0.1",
     "preact-cli-plugin-typescript": "git+https://github.com/DLehenbauer/preact-cli-plugin-typescript.git",
-    "typings-for-css-modules-loader": "^1.7.0"
+    "typings-for-css-modules-loader": "^1.7.0",
+    "zorkscript": "0.0.2"
   },
   "dependencies": {
     "ifvms": "^1.1.3",

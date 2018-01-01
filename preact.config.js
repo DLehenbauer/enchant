@@ -1,4 +1,5 @@
 const preactCliTypeScript = require('preact-cli-plugin-typescript');
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 /**
  * Function that mutates original webpack config.
@@ -9,5 +10,13 @@ const preactCliTypeScript = require('preact-cli-plugin-typescript');
  * @param {WebpackConfigHelpers} helpers object with useful helpers when working with config.
  **/
 export default function (config, env, helpers) {
-  preactCliTypeScript(config)
+  config.plugins.push(
+    new CopyWebpackPlugin([
+        {
+            from: '../node_modules/monaco-editor/min/vs',
+            to: 'vs'
+        }
+    ]));
+
+    preactCliTypeScript(config)
 }
