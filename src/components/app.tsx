@@ -24,14 +24,15 @@ export default class App extends Component<AppProps, AppState> {
 	};
 
 	render() {
+		const base = __webpack_public_path__;
 		return (
 			<div id="app">
 				<Match path="/">
-					{ (result: MatchResult) => !result.url.match(/\/vm\/?/) && (<Header />) }
+					{ (result: MatchResult) => !result.url.match(/vm/) && (<Header />) }
 				</Match>
 				<Router onChange={this.handleRoute}>
-					<Home path="/" />
-					<VM path="/vm/" />
+					<Home path={base} />
+					<VM path={`${base}:vm`} />
 				</Router>
 			</div>
 		);

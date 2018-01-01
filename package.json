@@ -8,7 +8,8 @@
     "build": "preact build --no-prerender",
     "serve": "preact build --no-prerender && preact serve",
     "dev": "preact watch",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "deploy": "npm run build && gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "eslint-config-synacor"
@@ -20,6 +21,7 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "eslint": "^4.9.0",
     "eslint-config-synacor": "^2.0.2",
+    "gh-pages": "^1.1.0",
     "if-env": "^1.0.0",
     "monaco-editor": "^0.10.1",
     "preact-cli": "^2.0.1",

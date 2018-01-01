@@ -9,7 +9,7 @@ export default class Header extends Component<HeaderProps, HeaderState> {
 	render() {
 		return (
 			<header class={style.header}>
-				<h1>IF</h1>
+				<h1>ZorkScript Playground</h1>
 				<nav>
 					<Link activeClassName={style.active} href="/">Home</Link>
 				</nav>

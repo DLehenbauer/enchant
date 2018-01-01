@@ -21,4 +21,5 @@
 
 .vmPane {
 	grid-area: "vm";
+	border: 0;
 }

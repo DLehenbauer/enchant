@@ -20,7 +20,7 @@ export function script(src: string | string[]): Promise<any> {
 
     scriptElement.type  = 'text/javascript';
     scriptElement.async = true;
-    scriptElement.src   = src;
+    scriptElement.src   = __webpack_public_path__ + src;
 
     document.body.appendChild(scriptElement);
 

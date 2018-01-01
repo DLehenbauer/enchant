@@ -1,6 +1,7 @@
-const preactCliTypeScript = require('preact-cli-plugin-typescript');
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+import preactCliTypeScript from 'preact-cli-plugin-typescript'
+import CopyWebpackPlugin from 'copy-webpack-plugin'
+import UglifyJsPlugin from 'uglifyjs-webpack-plugin'
+import webpack from 'webpack'
 
 /**
  * Function that mutates original webpack config.
@@ -11,6 +12,10 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
  * @param {WebpackConfigHelpers} helpers object with useful helpers when working with config.
  **/
 export default function (config, env, helpers) {
+  const PUBLIC_PATH = env.production ? '/if/' : '/'
+  config.output.publicPath = PUBLIC_PATH
+  config.plugins.push(new webpack.DefinePlugin({ PUBLIC_PATH }))
+
   const index = config.plugins.findIndex(plugin => plugin.constructor.name === 'UglifyJsPlugin');
   if (index >= 0) {
       const oldOptions = config.plugins[index].options;

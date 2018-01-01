@@ -36,7 +36,7 @@ export default class Home extends Component<HomeProps, HomeState> {
 				<div class={style.editorPane}>
 					<Editor compileFn={ this.compile } />
 				</div>
-				<iframe class={style.vmPane} src="/vm" ref={ frame => this.vmFrame = frame as HTMLIFrameElement }></iframe>
+				<iframe class={style.vmPane} src={__webpack_public_path__ + ":vm"} ref={ frame => this.vmFrame = frame as HTMLIFrameElement }></iframe>
 			</div>
 		);
 	}
