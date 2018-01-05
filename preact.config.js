@@ -2,6 +2,7 @@ import preactCliTypeScript from 'preact-cli-plugin-typescript'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin'
 import webpack from 'webpack'
+import SymlinkWebpackPlugin from 'symlink-webpack-plugin'
 
 /**
  * Function that mutates original webpack config.
@@ -12,9 +13,8 @@ import webpack from 'webpack'
  * @param {WebpackConfigHelpers} helpers object with useful helpers when working with config.
  **/
 export default function (config, env, helpers) {
-  const PUBLIC_PATH = env.production ? '/if/' : '/'
-  config.output.publicPath = PUBLIC_PATH
-  config.plugins.push(new webpack.DefinePlugin({ PUBLIC_PATH }))
+  config.output.publicPath = env.production ? `/${require('./package.json').name}/` : '/'
+  config.plugins.push(new webpack.DefinePlugin({ PUBLIC_PATH: config.output.publicPath }))
 
   const index = config.plugins.findIndex(plugin => plugin.constructor.name === 'UglifyJsPlugin');
   if (index >= 0) {
@@ -44,6 +44,8 @@ export default function (config, env, helpers) {
             to: 'glkote'
           }
     ]));
+
+    config.plugins.push(new SymlinkWebpackPlugin({ origin: 'index.html', symlink: 'vm.html' }))
 
     preactCliTypeScript(config)
 }

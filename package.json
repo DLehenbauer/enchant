@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "if",
+  "name": "enchant",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -26,6 +26,7 @@
     "monaco-editor": "^0.10.1",
     "preact-cli": "^2.0.1",
     "preact-cli-plugin-typescript": "git+https://github.com/DLehenbauer/preact-cli-plugin-typescript.git",
+    "symlink-webpack-plugin": "0.0.3",
     "typings-for-css-modules-loader": "^1.7.0",
     "uglifyjs-webpack-plugin": "^1.1.5",
     "zorkscript": "0.0.2"

@@ -1,7 +1,7 @@
 {
-  "name": "if",
-  "short_name": "if",
-  "start_url": "/",
+  "name": "Enchant",
+  "short_name": "Enchant",
+  "start_url": "/enchant",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#fff",

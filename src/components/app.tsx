@@ -32,7 +32,7 @@ export default class App extends Component<AppProps, AppState> {
 				</Match>
 				<Router onChange={this.handleRoute}>
 					<Home path={base} />
-					<VM path={`${base}:vm`} />
+					<VM path={`${base}vm`} />
 				</Router>
 			</div>
 		);
