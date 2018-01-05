@@ -23,3 +23,18 @@
 	grid-area: "vm";
 	border: 0;
 }
+
+.noError {
+	visibility: hidden;
+}
+
+.showError {
+	border-radius: 25px;
+	padding: 10px;
+	background: rgba(119, 0, 0, 0.5);
+	color: white;
+	left: 0;
+	right: 0;
+	position: absolute;
+	bottom: 0;
+}

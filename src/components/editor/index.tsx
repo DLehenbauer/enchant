@@ -43,6 +43,31 @@ export default class Editor extends Component<EditorProps, EditorState> {
 		this.container.appendChild(this.monacoParent);
 		this.monacoEditor.then(editor => {
 			editor.layout();
+			editor.setValue(`// Prints primes between 2 and 50
+// https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
+
+// Array(n) statically allocates a region of 'n' bytes in the dynamic memory
+// section of the z-code file.  (Arrays are never freed.)
+//
+// Use loadb/storeb or loadw/storew intrinsics to access the contents of the
+// array.  Note that there is currently no no bounds checking.
+const sieve = Array(51);
+const max = 50;
+
+function printPrimes() {
+	for (let i = 2; i <= max; ++i) {
+		const isMarked = loadb(sieve, i);
+		if (isMarked != true) {
+			print(' '); print(i);
+			for (let j = i * 2; j <= max; j += i) {
+				storeb(sieve, j, 1);
+			}
+		}
+	}
+}
+
+print('primes: '); printPrimes(); print('\\n');
+`);
 		});
 	}
 

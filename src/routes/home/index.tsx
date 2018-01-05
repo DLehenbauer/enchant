@@ -1,15 +1,22 @@
 import { h, Component } from 'preact';
-import { RouterProps } from 'preact-router';
 import Editor from '../../components/editor';
 import * as style from './style.css';
 import * as ZorkScript from 'zorkscript';
 import * as Await from '../../util/await';
 
-export interface HomeProps extends RouterProps { }
-export interface HomeState { }
+export interface HomeProps { }
+export interface HomeState { 
+	errorMessage: string;
+	errorStyle: string;
+}
 
 export default class Home extends Component<HomeProps, HomeState> {
 	private vmFrame: HTMLIFrameElement;
+
+	state = {
+		errorMessage: '',
+		errorStyle: style.noError
+	}
 
 	private readonly compile = (source: string) => {
 		let zcode: Uint8Array;
@@ -23,18 +30,28 @@ export default class Home extends Component<HomeProps, HomeState> {
 
 		this.vmFrame.contentWindow.location.reload(true);
 
-		const program = new ZorkScript.Program();
-		ZorkScript.compile(program, source);
-		program.main.new_line();
-		program.main.quit();
-		zcode = program.compile();
+		try {
+			const program = new ZorkScript.Program();
+			ZorkScript.compile(program, source);			
+			program.main.new_line();
+			program.main.quit();
+			zcode = program.compile();
+
+			this.setState({ errorStyle: style.noError })
+		} catch (err) {
+			this.setState({
+				errorMessage: err.message,
+				errorStyle: style.showError
+			})
+		}
 	}
 
-	render() {
+	render({ }, { errorMessage, errorStyle }: HomeState) {
 		return (
 			<div class={style.home}> 
 				<div class={style.editorPane}>
 					<Editor compileFn={ this.compile } />
+					<div class={errorStyle}>{errorMessage}</div>
 				</div>
 				<iframe class={style.vmPane} src={__webpack_public_path__ + "vm"} ref={ frame => this.vmFrame = frame as HTMLIFrameElement }></iframe>
 			</div>
